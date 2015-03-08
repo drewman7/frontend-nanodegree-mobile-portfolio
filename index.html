@@ -24,6 +24,7 @@
     <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
     <style>
+      /* Added inline css for the font and other critical CSS to minimize blocking during rendering */
       @font-face {
         font-family: 'Open Sans';
         font-style: normal;
@@ -79,6 +80,7 @@
           </li>
 
           <li>
+            <!-- Resized Image to 100x75 -->
             <img style="width: 100px;" src="views/images/pizzeria-100.jpg">
             <a href="views/pizza.html">Cam's Pizzeria</a>
             <p>Who wants a performant pizza?</p>
@@ -90,6 +92,7 @@
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
     <script>
+      // Added script to load the style.css so it wasn't blocking
       var cb = function() {
         var l = document.createElement('link'); l.rel = 'stylesheet';
         l.href = 'style.css';
