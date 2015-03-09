@@ -503,11 +503,19 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  var phaseSin = Math.sin((document.body.scrollTop / 1250));
+  var phaseCos = Math.cos((document.body.scrollTop / 1250));
   for (var i = 0; i < items.length; i++) {
-    
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = phaseSin * items[i].cos + phaseCos * items[i].sin;
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+
+  //for (var i = 0; i < 200; i++) {
+  //  var items = document.querySelector('.mover' + i);
+  //  var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  //  items.style.left = items.basicLeft + 100 * phase + 'px';
+  //}
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -534,6 +542,8 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    elem.sin = Math.sin(i % 5);
+    elem.cos = Math.cos(i % 5);
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
   updatePositions();
