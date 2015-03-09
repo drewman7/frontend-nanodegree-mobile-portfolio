@@ -502,15 +502,31 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-  //var items = document.getElementsByClassName('mover');
+  //var items = document.querySelectorAll('.mover');
+  //var phaseSin = Math.sin((document.body.scrollTop / 1250));
+  //var phaseCos = Math.cos((document.body.scrollTop / 1250));
+  //for (var i = 0; i < items.length; i++) {
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  //  var phase = phaseSin * items[i].cos + phaseCos * items[i].sin;
+  //  items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  //}
+
+  //var items = document.querySelectorAll('.mover');
+  //var item = document.getElementsByID('mover');
+  //var item = document.querySelector("#movingPizzas1").firstChild.attributes;
+  //console.log(item);
   var phaseSin = Math.sin((document.body.scrollTop / 1250));
   var phaseCos = Math.cos((document.body.scrollTop / 1250));
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < 200; i++) {
     //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    var phase = phaseSin * items[i].cos + phaseCos * items[i].sin;
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var item = document.getElementById('pizza' + (i));
+    //console.log(item);
+    var phase = phaseSin * item.cos + phaseCos * item.sin;
+    item.style.left = item.basicLeft + 100 * phase + 'px';
+    //item = item.nextSibling;
   }
+
+  //console.log(document.images.namedItem("pizza1"));
 
   //for (var i = 0; i < 200; i++) {
   //  var items = document.querySelector('.mover' + i);
@@ -538,6 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
+    elem.id = "pizza" + i;
     elem.src = "images/pizza-100.png"; //resized the picture
     elem.style.height = "100px";
     elem.style.width = "73.333px";
