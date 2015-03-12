@@ -14,8 +14,7 @@ https://github.com/drewman7/frontend-nanodegree-mobile-portfolio
 Based on PageSpeed, index.html was optimized to 93/100 for Mobile and 94/100 for Desktop.  To accomplish this, the following changes were made:
 
 -- External javascript files files were set to load asynchronous so they did not block rendering
--- Critical css in style.css was brought inline to minimize redering blocking
--- The non-critical style.css file is loaded in parallel
+-- Critical css in style.css was brought inline to minimize redering blocking which was everything
 -- Removed external load of font and placed it in as inline css
 -- Set the print.css to a media type of print, so it isn't loaded until necessary 
 
