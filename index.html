@@ -8,10 +8,14 @@
     <title>Cameron Pittman: Portfolio</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
+    <!-- Font css was brought inline to minimize blocking during rendering -->
     <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
 
+    <!-- The style.css was broken apart.  The critical css is now inline and the rest is loaded so it isn't blocking -->
     <!-- <link href="css/style.css" rel="stylesheet"> -->
-    <link href="css/print.css" rel="stylesheet" media="print">
+
+    <!-- print.css is setup with media so that it does not block rendering -->
+    <link href="css/print.css" rel="stylesheet" media="print">  
 
     <script>
       (function(w,g){w['GoogleAnalyticsObject']=g;
@@ -37,12 +41,13 @@
         font-weight: 700;
         src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
       }
+
+      /* Following css was brought in from the style.css to minimize blocking during rendering */
       header, footer, .container { max-width: 45em; margin: 0 auto; }
       .hero { padding: 2em; background-color: #f8f8f8; font-size:1.2em;
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc;
       }
-
       .content { padding: 1em 1em; }
       .content li { list-style-type: none; font-size: 1.1em;}
     </style>
@@ -80,7 +85,7 @@
           </li>
 
           <li>
-            <!-- Resized Image to 100x75 -->
+            <!-- Image was resized to 100x75 to improve rendering -->
             <img style="width: 100px;" src="views/images/pizzeria-100.jpg">
             <a href="views/pizza.html">Cam's Pizzeria</a>
             <p>Who wants a performant pizza?</p>
