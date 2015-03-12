@@ -560,7 +560,6 @@ document.addEventListener('DOMContentLoaded', function() {
     //updatePositions function
     elem.sin = Math.sin(i % 5); //Static factor to be used in position calculation
     elem.cos = Math.cos(i % 5); //Static factor to be used in position calculation
-    //elem.phase = 0;  //Element attribute to be use in phase calculation
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
   items = document.getElementsByClassName('mover');  //Now that that elements have been built, fill the items array
