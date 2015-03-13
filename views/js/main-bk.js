@@ -502,12 +502,49 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  //Following 2 variables are set each time scrolling occurs since they are dependant on the scroll position
-  phaseSin = Math.sin((document.body.scrollTop / 1250));
-  phaseCos = Math.cos((document.body.scrollTop / 1250));
-  //Use rAF to run and complete the moveThePizzas function before the screen is painted
-  requestAnimationFrame(moveThePizzas);
-  
+  //var items = document.querySelectorAll('.mover');
+  //var items = document.getElementsByClassName('mover');
+  var phaseSin = Math.sin((document.body.scrollTop / 1250));
+  var phaseCos = Math.cos((document.body.scrollTop / 1250));
+  //console.log(phaseSin);
+  //console.log(phaseCos);
+  //console.log(items[0]);
+  //for (var i = 0; i < items.length; i++) {
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    //var phase = phaseSin * items[i].cos + phaseCos * items[i].sin;
+    //items[i].phase = items[i].basicLeft + 100 * (phaseSin * items[i].cos + phaseCos * items[i].sin);
+      //console.log(items[i].sin);
+      //console.log(items[i].cos);
+    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  //}
+
+  requestAnimationFrame(update3);
+  //update3();
+
+  //console.log(item);
+  //var phaseSin = Math.sin((document.body.scrollTop / 1250));
+  //var phaseCos = Math.cos((document.body.scrollTop / 1250));
+  //for (var i = 0; i < 200; i++) {
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  //  var item = document.getElementById('pizza' + (i));
+    //console.log(item);
+  //  var phase = phaseSin * item.cos + phaseCos * item.sin;
+  //  item.style.left = item.basicLeft + 100 * phase + 'px';
+    //item = item.nextSibling;
+
+  //var items = document.querySelectorAll('.mover');
+  //var item = document.getElementsByID('mover');
+  //var item = document.querySelector("#movingPizzas1").firstChild.attributes;
+  //}
+
+  //console.log(document.images.namedItem("pizza1"));
+
+  //for (var i = 0; i < 200; i++) {
+  //  var items = document.querySelector('.mover' + i);
+  //  var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  //  items.style.left = items.basicLeft + 100 * phase + 'px';
+  //}
+
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
@@ -518,50 +555,83 @@ function updatePositions() {
   }
 }
 
-//Following function is called by rAF in the upatePositions to change the position of all the pizzas prior to painting the page 
-function moveThePizzas() {
+function update() {
   for (var i = 0; i < items.length; i++) {
-    //Following took the place of Math.sin((document.body.scrollTop / 1250) + (i % 5)) using the static values generated when
-    //the elements were created and the values generated with the scroll (in updatePositions)
-    var phase = phaseSin * items[i].cos + phaseCos * items[i].sin;
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    //var phase = phaseSin * items[i].cos + phaseCos * items[i].sin;
+      //console.log(items[i].sin);
+      //console.log(items[i].cos);
+    items[i].style.left = items[i].phase + 'px';
   }
 }
-
 
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 //window.addEventListener('scroll', update);
 
-//Set global variables to live the life of the webpage and have a global scope
-var items = [];  //Initiate the items variable to hold element information thus removing the need to initiate within updatePositions
-var phaseSin = 0;  //Initiate the phaseSin variable that will be used in the phase calculation in updatePositions and moveThePizzas
-var phaseCos = 0;  //Initiate the phaseCos variable that will be used in the phase calculation in updatePositions and moveThePizzas
+function update2() {
+  requestAnimationFrame(updatePositions);
+  //updatePositions();
+}
+
+function update3() {
+  for (var i = 0; i < items.length; i++) {
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = phaseSin * items[i].cos + phaseCos * items[i].sin;
+    //items[i].phase = items[i].basicLeft + 100 * (phaseSin * items[i].cos + phaseCos * items[i].sin);
+      //console.log(items[i].sin);
+      //console.log(items[i].cos);
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  }
+}
+
+var items = [];
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+  //var canvas = document.createElement('canvas'),
+  //ctx = canvas.getContext('2d');
+
+
+  //var image = new Image();
+  //image.src = "images/pizza-100.png";
+  //canvas.width = 500;
+  //canvas.height = 1000;
+  //canvas.HorizontalAlignment ="Right";
+  //canvas.className = 'mover';
+  //document.querySelector("body").appendChild(canvas);
+  //document.querySelector("#movingPizzas1").appendChild(canvas);
+  //document.querySelector("#header").insertBefore(canvas, "movingPizzas1");
+  //document.querySelector("#header").appendChild(canvas);
+  //ctx.translate(-50,0);
+  //ctx.fillStyle = 'blue';
+  //ctx.fillRect(100, 100, 200, 200);
+  //ctx.left = "auto";
+
+ // image.onload = function() {
+  //      ctx.drawImage(image, 10, 10);
+ //     };
+
+//  console.log(ctx);
+
+  //document.getElementById('mover').style.backface-visibility = "hidden";
+
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 50; i++) {  //lowered the number of pizza's being drawn from 200 to 50
+  for (var i = 0; i < 50; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.id = "pizza";
-    elem.src = "images/pizza-100.png"; //resized the moving pizza picture
+    elem.src = "images/pizza-100.png"; //resized the picture
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    //Using the mathmatical property of Sin(), sin(x + y) = sin(x)*cos(y) + sin(y)*cos(x).
-    //The 'Math.sin((document.body.scrollTop / 1250) + (i % 5))' in the updatePositions() function was broken in the following:
-    //Math.sin(document.body.scrollTop / 1250)*Math.cos(i%5) + Math.sin(i%5)*Math.cos(document.body.scrollTop / 1250)
-    //Since (i%5) is static based on the element number, the Math.sin(i%5) an Math.cos(i%5) are aded as attributes of the
-    //element below.  This way they will not need to be recalculated and can be used when the position is updated.
-    //The rest of the formula (document.body.scrollTop/1250) is dependant on the scroll postion and thus is in the 
-    //updatePositions function
-    elem.sin = Math.sin(i % 5); //Static factor to be used in position calculation
-    elem.cos = Math.cos(i % 5); //Static factor to be used in position calculation
+    elem.sin = Math.sin(i % 5);
+    elem.cos = Math.cos(i % 5);
+    elem.phase = 0;
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
-  items = document.getElementsByClassName('mover');  //Now that that elements have been built, fill the items array
-  updatePositions();  
+  items = document.getElementsByClassName('mover');
+  updatePositions();
 });
