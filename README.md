@@ -32,6 +32,8 @@ Based on Google developer tools, pizza.html was optimized paint at under 60 FPS 
 
 Also, each frame takes approximately 0.04 to 0.08 ms to generate.
 
+Third, the pizzas are resized in 1.2 ms.
+
 To accomplish this, the following changes were made to main.js:
 
 Global Variables
@@ -53,3 +55,7 @@ moveThePizzas Function
 -- The original Math.sin function is completed by adding the scroll based piece of the calculation to the individual element pieces (var phase = phaseSin * items[i].cos + phaseCos * items[i].sin)
 -- Each element is moved based on the phase calculation above
 -- Since this function was called by the requestAnimationFrame, the position updates are not painted to the screen until this function is complete
+
+changePizzaSizes Function
+-- Moved the dx variable/function call and newwidth calculation outside the for loop so they would only be called/calc once
+-- Moved the document.querySelectorAll(".randomPizzaContainer") to an external globa variable so it would only be run once

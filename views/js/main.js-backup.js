@@ -402,9 +402,6 @@ var pizzaElementGenerator = function(i) {
 var resizePizzas = function(size) { 
   window.performance.mark("mark_start_resize");   // User Timing API function
 
-//var pizzaElem = document.querySelectorAll(".randomPizzaContainer");
-//console.log(pizzaElem);
-
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
     switch(size) {
@@ -453,12 +450,10 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    //Moved the dx variable/function call and newwidth calculation outside the for loop so they would only be called/calc once
-    //Moved the document.querySelectorAll(".randomPizzaContainer") to an external globa variable so it would only be run once
-    var dx = determineDx(pizzaElem[1], size);
-    var newwidth = (pizzaElem[1].offsetWidth + dx) + 'px';
-    for (var i = 0; i < pizzaElem.length; i++) {
-      pizzaElem[i].style.width = newwidth;
+    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
   }
 
@@ -478,8 +473,6 @@ for (var i = 2; i < 100; i++) {
   var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
-//This was moved out from the changePizzaSize function so the element list would be created once (when the page initially loads)
-var pizzaElem = document.querySelectorAll(".randomPizzaContainer");
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
 window.performance.mark("mark_end_generating");
