@@ -32,7 +32,7 @@ Based on Google developer tools, pizza.html was optimized paint at under 60 FPS 
 
 Also, each frame takes approximately 0.04 to 0.08 ms to generate.
 
-Third, the pizzas are resized in 0.979 ms.
+Third, the pizzas are resized in 1.2 ms.
 
 To accomplish this, the following changes were made to main.js:
 
